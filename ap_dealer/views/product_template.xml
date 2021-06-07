@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+  
+    <record model="ir.ui.view" id="product_template_form_view_inherit_id">
+        <field name="name">product.template.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+<!--     Eliminado x Ahora, luego decido si lo uso
+            <button name="toggle_active" position="before">
+                <button class="oe_stat_button" name="action_view_cotizacion"
+                    type="object" icon="fa-star" groups="sales_team.group_sale_salesman" help="Cotizaciones en los Ultimos 365 dias">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="cotizacion_count" widget="statinfo" nolabel="1" class="mr4"/>
+                        </span>
+                        <span class="o_stat_text">Cotizaciones</span>
+                    </div>
+                </button>
+            </button>
+-->
+            <label for="purchase_ok" position="after">
+                <br/><field name="ap_vehiculo_ok"/>
+                <label for="ap_vehiculo_ok"/>
+            </label>
+            <xpath expr="//notebook/page[@name='general_information']" position="after">
+                <page string="Datos del Vehículo" attrs="{'invisible':[('ap_vehiculo_ok','=',False)]}" name="datos_vehiculo" >
+                    <group name="ap_product_generales" string="Propiedades Generales">
+                        <group>
+                            <field name="model_id"/>
+                            <field name="ap_condicion"/>
+                            <field name="ap_tipo_vehiculo"/>
+                            <field name="ap_ano"/>
+                            <field name="ap_chasis"/>
+                            <field name="ap_placa"/>
+                            <field name="ap_capacidad_carga"/>
+                        </group>
+                        <group>
+                            <label for="ap_odometer"/>
+                            <div class="o_row">
+                                <field name="ap_odometer"/>
+                                <field name="ap_odometer_unit"/>
+                            </div>
+                            <field name="ap_fecha_registro" />
+                            <field name="ap_seats"/>
+                            <field name="ap_doors"/>
+                            <field name="ap_color"/>
+                            <field name="ap_color_interior"/>
+                        </group>
+                    </group>
+                    <group name="ap_product_motor" string="Opciones del Motor">
+                      <group>
+                            <field name="ap_motor"/>
+                            <field name="ap_traccion"/>
+                            <field name="ap_transmission"/>
+                            <field name="ap_fuel_type"/>
+                            <field name="ap_cilindros"/>
+                            <field name="ap_horsepower"/>
+                        </group>
+                    </group>
+                    <group name="ap_product_extras" string="Componentes/Accesorios">
+                        <notebook>
+                            <page name="confort" string="Confort">
+                                <group>
+                                    <group>
+                                        <field name="ap_tercerafila"/>
+                                        <field name="ap_baulelectrico"/>
+                                        <field name="ap_sunroof"/>
+                                        <field name="ap_techopanoramico"/>
+                                        <field name="ap_llaveinteligente"/>
+                                        <field name="ap_radioamfm"/>
+                                        <field name="ap_radiomultimedia"/>
+                                        <field name="ap_android_auto"/>
+                                        <field name="ap_apple_carplay"/>
+                                        <field name="ap_sonidopro"/>
+                                        <field name="ap_cdplayer"/>
+                                        <field name="ap_cdbox"/>
+                                        <field name="ap_navegacion"/>
+                                        <field name="ap_camarareversa"/>
+                                        <field name="ap_cruisecontrol"/>
+                                        <field name="ap_tractioncontrol"/>
+                                        <field name="ap_limpiavidriotrasero"/>
+                                        <field name="ap_nevera"/>
+                                        <field name="ap_pinturafabrica"/>
+                                    </group>
+                                    <group>
+                                        <field name="ap_aire"/>
+                                        <field name="ap_aire_digital"/>
+                                        <field name="ap_aire_doble"/>
+                                        <field name="ap_calefaccion"/>
+                                        <field name="ap_asientospiel"/>
+                                        <field name="ap_asientospana"/>
+                                        <field name="ap_asientostela"/>
+                                        <field name="ap_asientosvinyl"/>
+                                        <field name="ap_asientos_deportivos"/>
+                                        <field name="ap_asientos_electricos"/>
+                                        <field name="ap_bluetooth"/>
+                                        <field name="ap_guiahidraulico"/>
+                                        <field name="ap_guiasemihidraulico"/>
+                                        <field name="ap_guiamulti"/>
+                                        <field name="ap_retrovisores"/>
+                                        <field name="ap_vidrioselec"/>
+                                        <field name="ap_vidriosmanual"/>
+                                        <field name="ap_cortinaselectricas"/>
+                                        <field name="ap_puertaelectrica"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="tecnico" string="Técnico">
+                                <group>
+                                    <group>
+                                        <field name="ap_arosfabrica"/>
+                                        <field name="ap_arosalum"/>
+                                        <field name="ap_aroshierro"/>
+                                        <field name="ap_arosmagnesio"/>
+                                        <field name="ap_cabinasimple"/>
+                                        <field name="ap_cabinadoble"/>
+                                        <field name="ap_cabinacuarta"/>
+                                        <field name="ap_cabinamedia"/>
+                                        <field name="ap_gancho"/>
+                                    </group>
+                                    <group>
+                                        <field name="ap_camacerrada"/>
+                                        <field name="ap_camacorta"/>
+                                        <field name="ap_camalarga"/>
+                                        <field name="ap_halogenos"/>
+                                        <field name="ap_lucesdiurno"/>
+                                        <field name="ap_intercooler"/>
+                                        <field name="ap_transmisiondeportiva"/>
+                                        <field name="ap_turbo"/>
+                                        <field name="ap_turbodiesel"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="seguridad" string="Seguridad">
+                                <group>
+                                    <field name="ap_alarma"/>
+                                    <field name="ap_bolsachofer"/>
+                                    <field name="ap_bolsapasajero"/>
+                                    <field name="ap_bolsatrasera"/>
+                                    <field name="ap_abs"/>
+                                    <field name="ap_frenoshidraulicos"/>
+                                    <field name="ap_seguroselectricos"/>
+                                    <field name="ap_multilock"/>
+                                    <field name="ap_sensoresparqueo"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    </data>
+</odoo>
