@@ -4,7 +4,6 @@ from odoo import models, fields, api, _
 class Product(models.Model):
     _inherit = 'product.template'
 
-
     def get_cotizaciones(self):
         count = self.env['sale.order.line'].search_count([('product_id', '=', self.id)])
         self.cotizacion_count = count
@@ -146,7 +145,6 @@ class Product(models.Model):
 
     cotizacion_count = fields.Integer(compute='get_cotizaciones', string='Cotizaciones')
 
-    @api.multi
     def action_view_cotizacion(self):
         action = self.env.ref('ap_dealer.report_all_channels_cot_action').read()[0]
         action['domain'] = [('product_tmpl_id', 'in', self.ids)]

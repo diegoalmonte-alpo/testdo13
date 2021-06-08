@@ -34,5 +34,4 @@ Chasis""",
   "images"               :  ['static/description/Banner.jpg'],
   "application"          :  True,
   "installable"          :  True,
-  "pre_init_hook"        :  "pre_init_check",
 }
