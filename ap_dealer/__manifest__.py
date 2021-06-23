@@ -25,10 +25,11 @@ Marca
 Modelo
 Placa
 Chasis""",
-  "depends"              :  ['product'],
+  "depends"              :  ['product','stock'],
   "data"                 :  [ 'security/ir.model.access.csv',
                               'views/product_template.xml',
                               'views/ap_vehicle_model.xml',
+                              'views/stock_picking.xml',
                               'models/report_all_channels_cot_views.xml',
                               'data/fleet_cars_data.xml',],
   "images"               :  ['static/description/Banner.jpg'],

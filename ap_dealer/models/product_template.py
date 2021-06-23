@@ -72,6 +72,7 @@ class Product(models.Model):
 
     model_id = fields.Many2one('ap.vehicle.model', 'Modelo', track_visibility="onchange", help='Modelo del Vehiculo')
     brand_id = fields.Many2one('ap.vehicle.model.brand', 'Marca', related="model_id.brand_id", store=True, readonly=False, help='Marca del Vehiculo')
+    ap_landedcosts_ids = fields.One2many('product.landedcost.view', 'product_id', string='LCs', groups='base.group_user')
 
     ap_tercerafila = fields.Boolean(string="Tercera Fila Asientos", default=False)
     ap_baulelectrico = fields.Boolean(string="Baul Eléctricoo", default=False)
@@ -154,3 +155,17 @@ class Product(models.Model):
             'search_default_team_id': 1
         }
         return action
+
+    @api.onchange('model_id','ap_chasis','ap_ano','ap_color')
+    def onchange_chasis(self):
+        if self.model_id:
+            self.name = self.model_id.brand_id.name+' '+self.model_id.name
+
+        if self.ap_ano:
+            self.name = self.name +' '+self.ap_ano
+
+        if self.ap_color:
+            self.name = self.name +' '+ self.ap_color
+
+        if self.ap_chasis:
+            self.name = self.name +' '+ self.ap_chasis

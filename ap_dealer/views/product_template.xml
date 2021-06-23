@@ -149,6 +149,16 @@
                         </notebook>
                     </group>
                 </page>
+                <page string="Costos Aplicados" attrs="{'invisible':[('ap_vehiculo_ok','=',False)]}" name="costos_destino" >
+                    <field name="ap_landedcosts_ids">
+                        <tree string="Costos">
+                            <field name="name"/>
+                            <field name="picking_name"/>
+                            <field name="lc_name"/>
+                            <field name="price_unit" sum="Total de Costos" widget="monetary"/>
+                        </tree>
+                    </field>
+                </page>
             </xpath>
         </field>
     </record>

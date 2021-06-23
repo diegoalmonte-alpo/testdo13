@@ -38,8 +38,23 @@ class FleetVehicleModelBrand(models.Model):
     _order = 'name asc'
 
     name = fields.Char('Make', required=True)
-    image = fields.Image("Logo", attachment=True, max_width=1024, max_height=1024,
+    image = fields.Image("Logo", attachment=True,
         help="This field holds the image used as logo for the brand, limited to 1024x1024px.")
-    image_medium = fields.Image("Medium-sized image", related="image", store=True, max_width=128, max_height=128)        
-    image_small = fields.Image("Small-sized image", related="image", store=True, max_width=64, max_height=64)
-    
+    image_medium = fields.Image("Medium-sized image", attachment=True,
+        help="Medium-sized logo of the brand. It is automatically "
+             "resized as a 128x128px image, with aspect ratio preserved. "
+             "Use this field in form views or some kanban views.")
+    image_small = fields.Image("Small-sized image", attachment=True,
+        help="Small-sized logo of the brand. It is automatically "
+             "resized as a 64x64px image, with aspect ratio preserved. "
+             "Use this field anywhere a small image is required.")
+
+#    @api.model_create_multi
+#    def create(self, vals_list):
+#        for vals in vals_list:
+#            tools.image_resize_images(vals)
+#        return super(FleetVehicleModelBrand, self).create(vals_list)
+
+#    def write(self, vals):
+#        tools.image_resize_images(vals)
+#        return super(FleetVehicleModelBrand, self).write(vals)
